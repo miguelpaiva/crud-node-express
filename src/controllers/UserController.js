@@ -15,14 +15,15 @@ module.exports = {
 
   listUsers(req, res) {
     const listaUsers = console.users.map((user) => user);
-
     return res.json(listaUsers);
   },
 
   listUsersByName(req, res) {
     const { name: nameParam } = req.query;
 
-    const listaUsers = console.users.filter(({ name }) => name === nameParam);
+    const listaUsers = console.users.filter((item) =>
+      item.name.toUpperCase().includes(nameParam.toUpperCase())
+    );
 
     return res.json(listaUsers);
   },
